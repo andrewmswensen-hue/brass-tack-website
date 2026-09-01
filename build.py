@@ -447,12 +447,15 @@ def pkg_grid(items):
         cls = "pkg-card"
         if it.get("work"):
             cls += " pkg-card-media"
-            media = """        <a class="pkg-thumb" href="work-%s.html" tabindex="-1" aria-hidden="true">
+            media = """        <span class="pkg-thumb">
           <img src="assets/work/%s" alt="%s" width="1600" height="900"
                loading="lazy" decoding="async" style="object-position:%s">
-        </a>\n""" % (it["work"], it["cover"], esc(it["alt"]), it["pos"])
-            link = ('\n          <a class="tlink" href="work-%s.html">See examples %s</a>'
-                    % (it["work"], ARROW))
+        </span>\n""" % (it["cover"], esc(it["alt"]), it["pos"])
+            # one anchor, stretched over the whole card by CSS, so clicking the
+            # heading or the description works the same as clicking the link
+            link = ('\n          <a class="tlink" href="work-%s.html" '
+                    'aria-label="See examples of %s">See examples %s</a>'
+                    % (it["work"], esc(it["name"].lower()), ARROW))
         body_open = '        <div class="pkg-body">\n' if it.get("work") else ""
         body_close = "        </div>\n" if it.get("work") else ""
         soft = "" if re.match(r"^\+?\$", it["price"].lstrip()) else " pkg-price-soft"

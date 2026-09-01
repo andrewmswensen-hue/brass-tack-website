@@ -580,7 +580,14 @@ address{font-style:normal}
 .pkg-card:hover{border-color:transparent;box-shadow:var(--shadow);transform:translateY(-3px)}
 .pkg-card h3{font-size:clamp(1.12rem,1.45vw,1.3rem);margin-bottom:.6em}
 .pkg-card p{color:var(--ink-3);font-size:.97rem;margin:0}
-.pkg-card-media{padding:0}
+.pkg-card-media{padding:0;position:relative}
+/* The whole card is the link. Only the image and the small "See examples" text
+   used to be clickable, so clicking the heading or description did nothing,
+   which read as a broken link. One anchor stretched over the card fixes that
+   without adding a second link to the same destination. */
+.pkg-card-media .tlink{position:static}
+.pkg-card-media .tlink::before{display:none}
+.pkg-card-media .tlink::after{content:"";position:absolute;inset:0;z-index:1}
 .pkg-thumb{display:block;aspect-ratio:16/9;overflow:hidden;background:var(--line-2)}
 .pkg-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
 .pkg-card-media:hover .pkg-thumb img{transform:scale(1.04)}
