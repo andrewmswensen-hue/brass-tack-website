@@ -80,7 +80,7 @@ Brass Tack is a small, specialized shop that focuses exclusively on content, mes
 
 ### Why does professional writing still matter in the age of AI?
 
-It has never been easier to produce a large volume of content, or harder to produce content that is actually worth reading. Every piece of work Brass Tack delivers is written by a human, revised by a human, and cross-checked by a human, with responsible AI search optimization layered in so the content is built to be found, read, and cited correctly by the assistants people now search with.
+It has never been easier to produce a large volume of content, or harder to produce content worth reading. Brass Tack uses AI where it earns its place, for research, early drafts, and structure, then directs, revises, and cross-checks everything with an experienced human. Responsible AI search optimization is built in, so the content is found, read, and cited correctly by the assistants people now search with.
 
 ### Where is Brass Tack Communications located?
 

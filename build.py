@@ -46,10 +46,16 @@ DIAG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 BACK = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
         'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         '<path d="M19 12H5M11 18l-6-6 6-6"/></svg>')
+CHEV = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" '
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        '<path d="m6 9 6 6 6-6"/></svg>')
 PLAY = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
         '<path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14Z"/></svg>')
 
 # ------------------------------------------------------------ shared chrome --
+BRASS_RULE = '<span class="brass-rule" aria-hidden="true"></span>'
+
+
 def header(active):
     links = []
     for label, href in C.NAV:
@@ -76,12 +82,12 @@ def header(active):
 
 
 def cta_band():
-    return """<section class="section-tight band-dark cta-band">
+    return """<section class="section-tight cta-band">
   <div class="wrap-wide cta-inner">
     <h2>Let&rsquo;s put your story to work.</h2>
     <div class="cta-actions">
-      <a class="btn btn-on-dark" href="contact.html">Start a conversation %s</a>
-      <a class="btn btn-outline-dark" href="mailto:%s">%s</a>
+      <a class="btn btn-on-brass" href="contact.html">Start a conversation %s</a>
+      <a class="btn btn-outline-brass" href="mailto:%s">%s</a>
     </div>
   </div>
 </section>""" % (ARROW, S["email"], S["email"])
@@ -345,13 +351,48 @@ def media_block(item):
         </figure>""" % (item["img"], esc(item["alt"]))
 
 
-def pkg_grid(items):
-    return "\n".join(
-        """      <div class="pkg-card reveal">
+def cap_grid(items):
+    """The six verbatim services: title up front, full copy behind a disclosure."""
+    out = []
+    for i, (name, desc) in enumerate(items, 1):
+        out.append("""      <article class="cap-card reveal">
+        <p class="cap-num">%02d</p>
         <h3>%s</h3>
+        <details>
+          <summary><span class="lbl-more">Read more</span><span class="lbl-less">Close</span>%s</summary>
+          <p class="cap-body">%s</p>
+        </details>
+      </article>""" % (i, esc(name), CHEV, esc(desc)))
+    return "\n".join(out)
+
+
+def pkg_grid(items):
+    """Deliverables. Items that map to a portfolio category get a real image
+    and a link straight to that work."""
+    out = []
+    for it in items:
+        media = ""
+        link = ""
+        cls = "pkg-card"
+        if it.get("work"):
+            cls += " pkg-card-media"
+            media = """        <a class="pkg-thumb" href="work-%s.html" tabindex="-1" aria-hidden="true">
+          <img src="assets/work/%s" alt="%s" width="1600" height="900"
+               loading="lazy" decoding="async" style="object-position:%s">
+        </a>\n""" % (it["work"], it["cover"], esc(it["alt"]), it["pos"])
+            link = ('\n          <a class="tlink" href="work-%s.html">See examples %s</a>'
+                    % (it["work"], ARROW))
+        body_open = '        <div class="pkg-body">\n' if it.get("work") else ""
+        body_close = "        </div>\n" if it.get("work") else ""
+        out.append("""      <article class="%s reveal">
+%s%s        <h3>%s</h3>
         <p>%s</p>
-        <p class="pkg-price">%s</p>
-      </div>""" % (esc(n), esc(d), esc(pr)) for n, d, pr in items)
+        <div class="pkg-foot">
+          <p class="pkg-price">%s</p>%s
+        </div>
+%s      </article>""" % (cls, media, body_open, esc(it["name"]), esc(it["desc"]),
+                         esc(it["price"]), link, body_close))
+    return "\n".join(out)
 
 
 def links_block(item):
@@ -404,21 +445,10 @@ def build_home():
   </div>
 </section>
 
-<section class="section band-dark" aria-labelledby="ai-h">
-  <div class="wrap-wide">
-    <div class="statement-grid">
-      <h2 id="ai-h" class="reveal">%(ai_h2)s</h2>
-      <div class="lead reveal">
-        %(ai_body)s
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section-tight" aria-labelledby="clients-h">
+<section class="section-tight band-dark" aria-labelledby="clients-h">
   <div class="wrap-wide">
     <div class="sec-head">
-      <div class="sec-head-stack"><h2 id="clients-h">%(clients_h2)s</h2></div>
+      <div class="sec-head-stack">%(rule)s<h2 id="clients-h">%(clients_h2)s</h2></div>
     </div>
     <div class="logo-wall reveal">
       %(logos)s
@@ -426,7 +456,7 @@ def build_home():
   </div>
 </section>
 
-<section class="section-tight" aria-labelledby="svc-h">
+<section class="section-tight band-alt" aria-labelledby="svc-h">
   <div class="wrap-wide">
     <div class="sec-head sec-head-col">
       <h2 id="svc-h">What we do</h2>
@@ -439,6 +469,17 @@ def build_home():
   </div>
 </section>
 
+<section class="section band-dark" aria-labelledby="ai-h">
+  <div class="wrap-wide">
+    <div class="statement-grid">
+      <div class="reveal">%(rule)s<h2 id="ai-h">%(ai_h2)s</h2></div>
+      <div class="lead reveal">
+        %(ai_body)s
+      </div>
+    </div>
+  </div>
+</section>
+
 %(cta)s""" % {
         "h1": mark(esc(C.HOME["h1"]), C.HOME["h1_mark"]),
         "lead": esc(C.HOME["lead"]),
@@ -446,6 +487,7 @@ def build_home():
         "ai_h2": esc(C.AI_SECTION["h2"]), "ai_body": ai,
         "clients_h2": esc(C.HOME["clients_h2"]), "logos": logo_wall(),
         "svc_lead": esc(C.SERVICES["lead"]), "svc": svc, "cta": cta_band(),
+        "rule": BRASS_RULE,
     }
 
     return page("index.html",
@@ -565,13 +607,7 @@ def cat_title(item):
 
 
 def build_services():
-    items = "\n".join(
-        """    <li class="reveal">
-      <div class="numlist-body">
-        <h3>%s</h3>
-        <p>%s</p>
-      </div>
-    </li>""" % (esc(n), esc(d)) for n, d in C.SERVICES["items"])
+    items = cap_grid(C.SERVICES["items"])
 
     body = """<section class="page-head">
   <div class="wrap-wide">
@@ -590,21 +626,25 @@ def build_services():
   </div>
 </section>
 
-<section class="section-tight" style="padding-top:0">
+<section class="section-tight" style="padding-top:0" aria-labelledby="cap-h">
   <div class="wrap-wide">
-    <ol class="numlist">
+    <div class="sec-head sec-head-col">
+      <h2 id="cap-h">%s</h2>
+      <p class="framer">%s</p>
+    </div>
+    <div class="offer-grid">
 %s
-    </ol>
+    </div>
   </div>
 </section>
 
-<section class="section-tight" aria-labelledby="pkg-h">
+<section class="section-tight section-stack" aria-labelledby="pkg-h">
   <div class="wrap-wide">
     <div class="sec-head sec-head-col">
       <h2 id="pkg-h">%s</h2>
       <p class="lead">%s</p>
     </div>
-    <div class="pkg-grid">
+    <div class="offer-grid">
 %s
     </div>
   </div>
@@ -616,15 +656,17 @@ def build_services():
       <h2 id="site-h">%s</h2>
       <p class="lead">%s</p>
     </div>
-    <div class="pkg-grid">
+    <div class="offer-grid">
 %s
     </div>
   </div>
 </section>
 
 %s""" % (mark(esc(C.SERVICES["h1"]), "when you need it"), esc(C.SERVICES["lead"]),
-         esc(C.SERVICES["cta"]), ARROW, items,
-         esc(C.PACKAGES["h2"]), esc(C.PACKAGES["lead"]), pkg_grid(C.PACKAGES["items"]),
+         esc(C.SERVICES["cta"]), ARROW,
+         esc(C.CAPABILITIES["h2"]), esc(C.CAPABILITIES["framer"]), items,
+         esc(C.PACKAGES["h2"]), esc(C.PACKAGES["lead"]),
+         pkg_grid(C.PACKAGES["items"]),
          esc(C.WEBSITES["h2"]), esc(C.WEBSITES["lead"]), pkg_grid(C.WEBSITES["items"]),
          cta_band())
 
@@ -648,7 +690,8 @@ def build_services():
                             "priceSpecification": {"@type": "PriceSpecification",
                                                    "priceCurrency": "USD",
                                                    "description": pr}}
-                           for n, d, pr in C.PACKAGES["items"] + C.WEBSITES["items"]]}}
+                           for n, d, pr in [(i["name"], i["desc"], i["price"])
+                                            for i in C.PACKAGES["items"] + C.WEBSITES["items"]]]}}
 
     return page("services.html", "Services | Brass Tack Communications",
                 plain(C.SERVICES["lead"])[:300], body,
@@ -697,7 +740,7 @@ def build_about():
 <section class="section band-dark" aria-labelledby="ai-h">
   <div class="wrap-wide">
     <div class="statement-grid">
-      <h2 id="ai-h" class="reveal">%(ai_h2)s</h2>
+      <div class="reveal">%(rule)s<h2 id="ai-h">%(ai_h2)s</h2></div>
       <div class="lead reveal">
         %(ai_body)s
       </div>
@@ -720,7 +763,7 @@ def build_about():
               "lead": esc(C.ABOUT["lead"]),
               "values_h2": esc(C.ABOUT["values_h2"]), "values": values,
               "ai_h2": esc(C.AI_SECTION["h2"]), "ai_body": ai,
-              "faq": faq, "cta": cta_band()}
+              "rule": BRASS_RULE, "faq": faq, "cta": cta_band()}
 
     about = {"@context": "https://schema.org", "@type": "AboutPage",
              "name": "About | Brass Tack Communications",

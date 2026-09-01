@@ -60,6 +60,32 @@ all `*.html`, `sitemap.xml`, `robots.txt`, `llms.txt`, `assets/img/favicon.svg`.
 `work-collateral.html`, `work-advertising.html`, `work-events.html`,
 `work-web.html`, `services.html`, `about.html`, `contact.html`, `404.html`
 
+## Services page structure (two axes, deliberately)
+
+The page carries two grids that look similar but are not. Keep the distinction:
+
+- **"What we do"** = the six VERBATIM services, i.e. the *process* (strategy →
+  messaging → concept → writing → event management → onsite). Rendered as
+  text-only `.cap-card`s with a native `<details>` disclosure, so the full
+  verbatim copy is in the DOM (and indexed) but not on screen by default.
+- **"What you can hire us to do"** = the six deliverables, i.e. *output formats*
+  (video, articles, collateral, web, events, ads). Rendered as `.pkg-card-media`
+  with a real portfolio thumbnail and a "See examples" link to the matching
+  work page. Each PACKAGES item carries `work`/`cover`/`pos`/`alt` for this.
+
+The two treatments (text grid vs image grid) are what stop them reading as the
+same list twice. Do not converge them. The deliverable formerly called "Event
+content management" is now "Live and virtual event content" because it collided
+word-for-word with the service of that name.
+
+## Home page section rhythm
+
+paper (hero) → paper (work) → **dark** (clients) → white (what we do) →
+**dark** (age of AI) → **brass** (CTA) → dark (footer).
+
+The CTA band is brass with ink text: 8.2:1 contrast. White on brass is 2.4:1 and
+fails, so do not switch the CTA text to white.
+
 ## Pricing placeholders
 
 `PACKAGES` (6 deliverables) and `WEBSITES` (3 tiers) in `src/content.py` drive the

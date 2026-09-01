@@ -51,14 +51,13 @@ AI_SECTION = {
     "h2": "In the age of AI, quality control matters more than ever.",
     "body": [
         "It has never been easier to produce a large volume of content, or harder to "
-        "produce content that is actually worth reading.",
-        "Every piece of work that leaves here is written by a human, revised by a human, "
-        "and cross-checked by a human. That is not nostalgia. It is the only dependable "
-        "way to get copy that understands your business, sounds like your brand, and "
-        "holds up in front of an audience that can tell the difference.",
-        "On top of that, we layer in responsible AI search optimization, so your content "
-        "is built to be found, read, and cited correctly by the assistants people now "
-        "search with. Strong writing first, with everything else in service of it.",
+        "produce content worth reading.",
+        "We use AI where it earns its place, for research, early drafts, and structure. "
+        "Everything is then directed, revised, and cross-checked by an experienced human, "
+        "because judgment is what decides whether any of it is worth reading.",
+        "We build in responsible AI search optimization too, so your content is found, "
+        "read, and cited correctly by the assistants people now search with. Strong "
+        "writing first, everything else in service of it.",
     ],
 }
 
@@ -132,35 +131,56 @@ SERVICES = {
 #            Every price line is a placeholder for Todd to replace.)
 # --------------------------------------------------------------------------
 PACKAGES = {
-    "h2": "What you can hire us for",
+    "h2": "What you can hire us to do",
+    "framer": "What you actually get.",
     "lead": "Most engagements start as one of these. Every one is scoped to the project, "
             "so the number depends on length, complexity, and how much of the work is "
             "yours to hand over.",
+    # Each package maps 1:1 to a portfolio category, so the card can show real
+    # work and link straight to it.
     "items": [
-        ("Video scripts and story direction",
-         "Concept, script, and story direction for brand films, explainers, customer "
-         "stories, and social video. From a thirty-second teaser to a six-minute feature.",
-         "Pricing available upon request"),
-        ("Articles, white papers, and e-books",
-         "Ghostwritten long-form content, from research and subject matter interviews "
-         "through drafting and revisions, published under your byline or your executive’s.",
-         "Priced per piece, quote available upon request"),
-        ("Online and print collateral",
-         "Info sheets, datasheets, brochures, and infographics that make a complicated "
-         "product easy to understand and easy to hand to a customer.",
-         "Pricing available upon request"),
-        ("Web copy and blog programs",
-         "Product and solution pages, site sections, and a steady stream of ghostwritten "
-         "thought leadership on a schedule you can count on.",
-         "Per project or monthly retainer, quote available upon request"),
-        ("Event content management",
-         "General sessions, theater presentations, and virtual conferences, scripted and "
-         "content-managed end to end, with speaker coaching and onsite support.",
-         "Scoped per event, quote available upon request"),
-        ("Advertising campaigns",
-         "Concept and copy for brand-level campaigns that run across print, web, social, "
-         "and video, built on a messaging foundation that holds the whole thing together.",
-         "Pricing available upon request"),
+        {"name": "Video scripts and story direction",
+         "desc": "Concept, script, and story direction for brand films, explainers, "
+                 "customer stories, and social video. From a thirty-second teaser to a "
+                 "six-minute feature.",
+         "price": "Pricing available upon request",
+         "work": "video", "cover": "cover-video.webp", "pos": "50% 50%",
+         "alt": "Frame from a Brass Tack scripted brand video"},
+        {"name": "Articles, white papers, and e-books",
+         "desc": "Ghostwritten long-form content, from research and subject matter "
+                 "interviews through drafting and revisions, published under your byline "
+                 "or your executive’s.",
+         "price": "Priced per piece, quote available upon request",
+         "work": "articles", "cover": "cover-articles.webp", "pos": "50% 12%",
+         "alt": "Spread from a Brass Tack white paper"},
+        {"name": "Online and print collateral",
+         "desc": "Info sheets, datasheets, brochures, and infographics that make a "
+                 "complicated product easy to understand and easy to hand to a customer.",
+         "price": "Pricing available upon request",
+         "work": "collateral", "cover": "cover-collateral.webp", "pos": "50% 8%",
+         "alt": "Printed info sheet written by Brass Tack"},
+        {"name": "Web copy and blog programs",
+         "desc": "Product and solution pages, site sections, and a steady stream of "
+                 "ghostwritten thought leadership on a schedule you can count on.",
+         "price": "Per project or monthly retainer, quote available upon request",
+         "work": "web", "cover": "cover-web.webp", "pos": "50% 50%",
+         "alt": "Web page written by Brass Tack"},
+        # renamed from "Event content management" so it no longer collides
+        # word-for-word with the service of that name above
+        {"name": "Live and virtual event content",
+         "desc": "General sessions, theater presentations, and virtual conferences, "
+                 "scripted and content-managed end to end, with speaker coaching and "
+                 "onsite support.",
+         "price": "Scoped per event, quote available upon request",
+         "work": "events", "cover": "cover-events.webp", "pos": "50% 50%",
+         "alt": "Conference general session stage produced with Brass Tack content"},
+        {"name": "Advertising campaigns",
+         "desc": "Concept and copy for brand-level campaigns that run across print, web, "
+                 "social, and video, built on a messaging foundation that holds the whole "
+                 "thing together.",
+         "price": "Pricing available upon request",
+         "work": "advertising", "cover": "cover-advertising.webp", "pos": "50% 6%",
+         "alt": "Advertising campaign artwork written by Brass Tack"},
     ],
 }
 
@@ -172,19 +192,26 @@ WEBSITES = {
             "revised line by line by a human, because that is the part that decides whether "
             "any of it is worth reading. This site was built exactly that way.",
     "items": [
-        ("Design only",
-         "A complete top-to-bottom design for your site: structure, page-by-page layout, "
-         "and the words that go in them. Hand it to whoever builds it.",
-         "Pricing available upon request"),
-        ("Build and handoff",
-         "We design it, build it, and hand you the finished site along with everything it "
-         "runs on. It is yours to host, own, and change whenever you like.",
-         "One-time project fee, quote available upon request"),
-        ("Build and ongoing care",
-         "Everything in the handoff option, plus we keep it running: updates, new pages, "
-         "fixes, and continued search and AI optimization as things change.",
-         "Monthly rate available upon request"),
+        {"name": "Design only",
+         "desc": "A complete top-to-bottom design for your site: structure, page-by-page "
+                 "layout, and the words that go in them. Hand it to whoever builds it.",
+         "price": "Pricing available upon request"},
+        {"name": "Build and handoff",
+         "desc": "We design it, build it, and hand you the finished site along with "
+                 "everything it runs on. It is yours to host, own, and change whenever "
+                 "you like.",
+         "price": "One-time project fee, quote available upon request"},
+        {"name": "Build and ongoing care",
+         "desc": "Everything in the handoff option, plus we keep it running: updates, new "
+                 "pages, fixes, and continued search and AI optimization as things change.",
+         "price": "Monthly rate available upon request"},
     ],
+}
+
+# NEW - framer for the (verbatim) six services, now shown as expandable cards
+CAPABILITIES = {
+    "h2": "What we do",
+    "framer": "How the work gets done.",
 }
 
 # --------------------------------------------------------------------------
@@ -257,10 +284,10 @@ FAQ = [
      "works directly with the person or team actually doing the work."),
     ("Why does professional writing still matter in the age of AI?",
      "It has never been easier to produce a large volume of content, or harder to produce "
-     "content that is actually worth reading. Every piece of work Brass Tack delivers is "
-     "written by a human, revised by a human, and cross-checked by a human, with responsible "
-     "AI search optimization layered in so the content is built to be found, read, and cited "
-     "correctly by the assistants people now search with."),
+     "content worth reading. Brass Tack uses AI where it earns its place, for research, "
+     "early drafts, and structure, then directs, revises, and cross-checks everything with "
+     "an experienced human. Responsible AI search optimization is built in, so the content "
+     "is found, read, and cited correctly by the assistants people now search with."),
     ("Where is Brass Tack Communications located?",
      "Brass Tack Communications is located at 37 W. 200 S., #352, Salt Lake City, UT 84101. "
      "You can reach the team at todd@brass-tack.com or +1 (801) 318-0191."),
