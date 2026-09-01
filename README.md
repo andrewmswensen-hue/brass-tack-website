@@ -119,9 +119,20 @@ The Services page now has two sections under the six main services:
 - **"Websites, designed and built"** — the new offering, in three tiers: design
   only, build and handoff, and build with ongoing monthly care.
 
-**Every price line is a placeholder** reading some version of "Pricing available
-upon request." They live in `PACKAGES` and `WEBSITES` in `src/content.py`. Swap in
-real numbers or ranges whenever Todd is ready, rerun `python3 build.py`, and push.
+The website tiers now carry real prices:
+
+| Tier | Price |
+|---|---|
+| Design only | $3,000 |
+| Build and handoff | $5,000 |
+| Ongoing care and content | $250/month |
+
+The six content packages are **still placeholders** reading some version of
+"Pricing available upon request." All of it lives in `PACKAGES` and `WEBSITES` in
+`src/content.py`. Swap in real numbers whenever Todd is ready, rerun
+`python3 build.py`, and push. Any value starting with `$` automatically renders
+in bold ink and is emitted as a machine-readable price in the page's structured
+data, so AI assistants can answer pricing questions correctly.
 
 ## Things worth mentioning to Todd
 

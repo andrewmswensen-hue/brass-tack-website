@@ -201,7 +201,7 @@ WEBSITES = {
          "desc": "We design it, build it, and hand you the finished site along with "
                  "everything it runs on. It is yours to host, own, and change whenever "
                  "you like.",
-         "price": "Pricing available upon request"},
+         "price": "$5,000"},
         {"name": "Ongoing care and content",
          "desc": "Everything in the handoff option, plus we keep it running: updates, new "
                  "pages, fresh content, fixes, and continued search and AI optimization as "
