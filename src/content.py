@@ -33,6 +33,82 @@ NAV = [
 ]
 
 # --------------------------------------------------------------------------
+# SEO / AIO  (NEW - none of this is visible on the page. Titles show in browser
+#             tabs and search results; descriptions show as the search snippet.)
+#
+# Positioning is deliberately NATIONAL/INTERNATIONAL, not local. Brass Tack
+# works remotely with clients across English-speaking markets, so nothing here
+# leans on Salt Lake City as a search term.
+# --------------------------------------------------------------------------
+
+# Countries the business actively serves. Used for schema areaServed.
+SERVES = [("US", "United States"), ("CA", "Canada"), ("GB", "United Kingdom"),
+          ("AU", "Australia"), ("NZ", "New Zealand"), ("IE", "Ireland")]
+
+# Todd is the named human behind the work. AI systems and Google both weight
+# author identity (E-E-A-T); without a Person entity the site has no author at all.
+PERSON = {
+    "name": "Todd Swensen",
+    "job_title": "Founder and Principal Writer",
+    "desc": "Todd Swensen founded Brass Tack Communications in 2011 and has been "
+            "writing messaging, copy, and scripts for technology companies, ad "
+            "agencies, and production companies for more than 20 years.",
+}
+
+# Per-page <title> and meta description.
+# The old descriptions were verbatim body copy hard-truncated at 300 characters,
+# which rendered as a cut-off fragment in search results.
+META = {
+    "index.html": (
+        "Brass Tack Communications | Content Strategy & Copywriting",
+        "A small, senior content shop writing messaging, copy, and scripts for tech "
+        "companies and agencies since 2011. No junior writers."),
+    "work.html": (
+        "Work | Video, White Papers, Campaigns & Event Content",
+        "Content work for ServiceNow, Ivanti, Malwarebytes, DigiCert and Broadcom: "
+        "video scripts, white papers, collateral, campaigns, and events."),
+    "services.html": (
+        "Services & Pricing | Content, Copywriting and Websites",
+        "Content strategy, messaging, copywriting, and event content. Plus websites "
+        "written and built by people: $3,000 content, +$5,000 build."),
+    "about.html": (
+        "About | A Senior-Only Content Team, Working Since 2011",
+        "A small, specialized content shop. No junior writers, and you always work "
+        "directly with the person actually doing the work."),
+    "contact.html": (
+        "Contact Brass Tack Communications",
+        "Talk to Brass Tack about your next content, messaging, or website project. "
+        "Email todd@brass-tack.com or call +1 (801) 318-0191."),
+    "work-video.html": (
+        "Video Scripts & Story Direction | Brass Tack",
+        "Video scripting and story direction for brand films, explainers, and social "
+        "video. Work for Publicis Sapient, SUSE, and Rio Tinto."),
+    "work-articles.html": (
+        "White Papers, E-books & Ghostwritten Articles | Brass Tack",
+        "Ghostwritten white papers and thought leadership that make technical subject "
+        "matter readable. Work for Lucem Health, Broadcom, and RizePoint."),
+    "work-collateral.html": (
+        "Info Sheets, Datasheets & Brochures | Brass Tack",
+        "Info sheets, datasheets, brochures, and infographics that make a complicated "
+        "product easy to understand. Work for Cybersource and NetDocuments."),
+    "work-advertising.html": (
+        "Advertising Campaign Copy | Brass Tack Communications",
+        "Brand-level advertising campaigns across print, web, social, and video, "
+        "including the NetDocuments \u201cWork Inspired\u201d campaign."),
+    "work-events.html": (
+        "Conference & Event Content | Brass Tack Communications",
+        "General sessions, theater presentations, and virtual conferences scripted "
+        "end to end. Work for Malwarebytes at RSA and DigiCert."),
+    "work-web.html": (
+        "Web Copy & Ghostwritten Blog Programs | Brass Tack",
+        "Product and solution pages plus ongoing ghostwritten thought leadership. "
+        "Work for Cybersource and Lucidworks."),
+    "404.html": (
+        "Page not found | Brass Tack Communications",
+        "That page could not be found."),
+}
+
+# --------------------------------------------------------------------------
 # HOME  (all VERBATIM unless noted)
 # --------------------------------------------------------------------------
 HOME = {

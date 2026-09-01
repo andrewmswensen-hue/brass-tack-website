@@ -136,6 +136,9 @@ def footer():
 
 # ------------------------------------------------------------------ shell --
 def page(filename, title, description, body, schema=None, og_image="assets/work/cover-video.webp"):
+    # SEO title/description live in content.META so they can be tuned without
+    # touching page copy. Fall back to whatever the caller passed.
+    title, description = C.META.get(filename, (title, description))
     url = BASE + "/" + ("" if filename == "index.html" else filename)
     blocks = ""
     if schema:
@@ -164,6 +167,8 @@ def page(filename, title, description, body, schema=None, og_image="assets/work/
 <meta name="twitter:description" content="%(desc)s">
 <meta name="twitter:image" content="%(base)s/%(og)s">
 <meta name="theme-color" content="#0F1012">
+<meta property="og:updated_time" content="%(today)s">
+<meta name="last-modified" content="%(today)s">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -182,7 +187,7 @@ def page(filename, title, description, body, schema=None, og_image="assets/work/
 </html>
 """ % {"title": esc(title), "desc": esc(description), "url": url, "base": BASE,
        "og": og_image, "schema": blocks, "header": header(filename),
-       "body": body, "footer": footer()}
+       "today": TODAY, "body": body, "footer": footer()}
     with open(os.path.join(HERE, filename), "w", encoding="utf-8") as f:
         f.write(html)
     return filename
@@ -209,7 +214,16 @@ ORG = {
     "address": {"@type": "PostalAddress", "streetAddress": S["street"],
                 "addressLocality": S["city"], "addressRegion": S["region"],
                 "postalCode": S["postal"], "addressCountry": S["country"]},
-    "areaServed": {"@type": "Country", "name": "United States"},
+    # Deliberately not local: the work is remote and sold across English-speaking
+    # markets, so this is a list of countries rather than a city or a GeoCircle.
+    "areaServed": [{"@type": "Country", "name": n} for _, n in C.SERVES],
+    "availableLanguage": {"@type": "Language", "name": "English"},
+    "priceRange": "$$$",
+    "founder": {"@id": BASE + "/#todd"},
+    "employee": {"@id": BASE + "/#todd"},
+    "serviceType": ["Content strategy", "Messaging development", "Copywriting",
+                    "Scriptwriting", "Ghostwriting", "White paper writing",
+                    "Event content management", "Website design and development"],
     "knowsAbout": ["Content strategy", "Messaging development", "Concept development",
                    "Copywriting", "Scriptwriting", "Ghostwriting", "White papers",
                    "Event content management", "Corporate speechwriting",
@@ -224,6 +238,63 @@ ORG = {
                                                "description": d}}
             for n, d in C.SERVICES["items"]],
     },
+}
+
+def price_spec(label):
+    """Real dollar figures become machine-readable prices; everything else
+    stays a described quote."""
+    m = re.match(r"^\+?\$([\d,]+)(/month)?$", label.strip())
+    if not m:
+        return {"@type": "PriceSpecification", "priceCurrency": "USD",
+                "description": label}
+    amount = m.group(1).replace(",", "")
+    if m.group(2):
+        return {"@type": "UnitPriceSpecification", "priceCurrency": "USD",
+                "price": amount, "description": label,
+                "referenceQuantity": {"@type": "QuantitativeValue", "value": 1,
+                                      "unitCode": "MON"}}
+    return {"@type": "PriceSpecification", "priceCurrency": "USD",
+            "price": amount, "description": label}
+
+
+PERSON = {
+    "@context": "https://schema.org", "@type": "Person",
+    "@id": BASE + "/#todd",
+    "name": C.PERSON["name"],
+    "jobTitle": C.PERSON["job_title"],
+    "description": C.PERSON["desc"],
+    "email": S["email"],
+    "worksFor": {"@id": BASE + "/#organization"},
+    "url": BASE + "/about.html",
+    "knowsAbout": ["Content strategy", "Messaging development", "Copywriting",
+                   "Scriptwriting", "Corporate speechwriting", "White papers",
+                   "Technical marketing content", "Event content"],
+}
+
+# The website offering as its own Service entity, so an assistant asked who
+# builds small business websites with professional copy has something to cite.
+WEB_SERVICE = {
+    "@context": "https://schema.org", "@type": "Service",
+    "@id": BASE + "/services.html#websites",
+    "name": "Website design, copywriting, and build",
+    "serviceType": "Website design and development",
+    "description": ("Websites built with AI in the loop and structured so search "
+                    "engines and AI assistants can read and cite them, then reviewed "
+                    "and revised line by line by an experienced human writer. Sold as "
+                    "content only, content plus build and handoff, or with ongoing "
+                    "monthly care."),
+    "provider": {"@id": BASE + "/#organization"},
+    "areaServed": [{"@type": "Country", "name": n} for _, n in C.SERVES],
+    "availableChannel": {"@type": "ServiceChannel",
+                         "serviceUrl": BASE + "/services.html",
+                         "servicePhone": S["phone_display"]},
+    "audience": {"@type": "BusinessAudience",
+                 "name": "Small and medium businesses"},
+    "offers": [
+        {"@type": "Offer", "name": i["name"], "description": i["desc"],
+         "priceCurrency": "USD", "availability": "https://schema.org/InStock",
+         "priceSpecification": price_spec(i["price"])}
+        for i in C.WEBSITES["items"]],
 }
 
 WEBSITE = {
@@ -349,23 +420,6 @@ def media_block(item):
           <img src="assets/work/%s" alt="%s" width="1500" height="1000"
                loading="lazy" decoding="async">
         </figure>""" % (item["img"], esc(item["alt"]))
-
-
-def price_spec(label):
-    """Real dollar figures become machine-readable prices; everything else
-    stays a described quote."""
-    m = re.match(r"^\+?\$([\d,]+)(/month)?$", label.strip())
-    if not m:
-        return {"@type": "PriceSpecification", "priceCurrency": "USD",
-                "description": label}
-    amount = m.group(1).replace(",", "")
-    if m.group(2):
-        return {"@type": "UnitPriceSpecification", "priceCurrency": "USD",
-                "price": amount, "description": label,
-                "referenceQuantity": {"@type": "QuantitativeValue", "value": 1,
-                                      "unitCode": "MON"}}
-    return {"@type": "PriceSpecification", "priceCurrency": "USD",
-            "price": amount, "description": label}
 
 
 def cap_grid(items):
@@ -511,7 +565,7 @@ def build_home():
     return page("index.html",
                 "Brass Tack Communications | Content Strategy, Messaging, and Copywriting",
                 C.HOME["lead"], body,
-                schema=[ORG, WEBSITE], og_image="assets/work/cover-video.webp")
+                schema=[ORG, WEBSITE, PERSON], og_image="assets/work/cover-video.webp")
 
 
 def build_work_hub():
@@ -711,7 +765,7 @@ def build_services():
 
     return page("services.html", "Services | Brass Tack Communications",
                 plain(C.SERVICES["lead"])[:300], body,
-                schema=[svc, crumbs_schema([("Home", "index.html"),
+                schema=[svc, WEB_SERVICE, crumbs_schema([("Home", "index.html"),
                                             ("Services", "services.html")])],
                 og_image="assets/work/cover-collateral.webp")
 
@@ -789,7 +843,7 @@ def build_about():
 
     return page("about.html", "About | Brass Tack Communications",
                 plain(C.ABOUT["lead"])[:300], body,
-                schema=[about, FAQ_SCHEMA,
+                schema=[about, PERSON, FAQ_SCHEMA,
                         crumbs_schema([("Home", "index.html"), ("About", "about.html")])],
                 og_image="assets/work/cover-events.webp")
 
@@ -887,63 +941,143 @@ def build_robots():
 
 
 def build_sitemap(pages):
+    """Standard sitemap plus video extensions. The seven Vimeo pieces are a real
+    asset and video results are a distinct surface in both search and AI answers."""
     prio = {"index.html": "1.0", "work.html": "0.9", "services.html": "0.9",
             "about.html": "0.8", "contact.html": "0.7"}
+    vids = {}
+    for c in W.CATEGORIES:
+        for it in c["items"]:
+            if it["media"] == "video":
+                vids.setdefault("work-%s.html" % c["slug"], []).append((c, it))
     rows = []
     for p in pages:
         if p == "404.html":
             continue
         loc = BASE + "/" + ("" if p == "index.html" else p)
-        rows.append("  <url>\n    <loc>%s</loc>\n    <lastmod>%s</lastmod>\n"
-                    "    <changefreq>monthly</changefreq>\n    <priority>%s</priority>\n"
-                    "  </url>" % (loc, TODAY, prio.get(p, "0.8")))
+        r = ["  <url>", "    <loc>%s</loc>" % loc,
+             "    <lastmod>%s</lastmod>" % TODAY,
+             "    <changefreq>monthly</changefreq>",
+             "    <priority>%s</priority>" % prio.get(p, "0.8")]
+        for c, it in vids.get(p, []):
+            v = it["video"]
+            r += ["    <video:video>",
+                  "      <video:thumbnail_loc>%s/assets/work/%s</video:thumbnail_loc>"
+                  % (BASE, it["img"]),
+                  "      <video:title>%s</video:title>" % esc(plain(it["title"])),
+                  "      <video:description>%s</video:description>"
+                  % esc(plain(" ".join(it["body"]))[:2000]),
+                  "      <video:player_loc>https://player.vimeo.com/video/%s</video:player_loc>"
+                  % v["id"],
+                  "      <video:duration>%d</video:duration>" % iso_seconds(v["duration"]),
+                  "      <video:publication_date>%sT00:00:00+00:00</video:publication_date>"
+                  % v["uploaded"],
+                  "      <video:family_friendly>yes</video:family_friendly>",
+                  "      <video:live>no</video:live>",
+                  "    </video:video>"]
+        r.append("  </url>")
+        rows.append("\n".join(r))
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
-           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+           '        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n'
            + "\n".join(rows) + "\n</urlset>\n")
-    open(os.path.join(HERE, "sitemap.xml"), "w").write(xml)
+    open(os.path.join(HERE, "sitemap.xml"), "w", encoding="utf-8").write(xml)
     return "sitemap.xml"
 
 
+def iso_seconds(iso):
+    m = re.match(r"PT(?:(\d+)M)?(?:(\d+)S)?$", iso)
+    return int(m.group(1) or 0) * 60 + int(m.group(2) or 0)
+
+
 def build_llms():
-    """llms.txt - a plain-language map of the site for AI assistants."""
-    out = ["# Brass Tack Communications", ""]
-    out.append("> %s" % C.HOME["lead"])
-    out.append("")
-    out.append("Brass Tack Communications is a content and messaging shop in %s, %s. "
-               "It has been creating messaging and copy for production companies, ad "
-               "agencies, graphic design firms, and corporations for more than 20 years, "
-               "and has operated under the Brass Tack name since %s. Contact: %s, %s."
-               % (S["city"], S["region"], S["founded"], S["email"], S["phone_display"]))
-    out.append("")
-    out.append("## Services")
-    out.append("")
+    """llms.txt - a plain-language, machine-friendly brief on the whole business.
+    This is the file AI assistants read to decide what Brass Tack is and whether
+    to recommend it, so it carries the offering and the real prices, not just
+    a page list."""
+    o = []
+    A = o.append
+    A("# Brass Tack Communications")
+    A("")
+    A("> %s" % C.HOME["lead"])
+    A("")
+    A("Brass Tack Communications is a small, senior content and messaging shop. It "
+      "has been creating messaging and copy for production companies, ad agencies, "
+      "graphic design firms, and corporations for more than 20 years, and has "
+      "operated under the Brass Tack name since %s. Every writer is an experienced "
+      "content creator; there are no junior writers, and clients work directly with "
+      "the person doing the work." % S["founded"])
+    A("")
+    A("The work is done remotely for clients across %s. The business is "
+      "registered at %s, %s, %s %s, but is not a local-only or walk-in service."
+      % (", ".join(n for _, n in C.SERVES), S["street"], S["city"],
+         S["region"], S["postal"]))
+    A("")
+    A("Contact: %s, %s" % (S["email"], S["phone_display"]))
+    A("")
+    A("## Who Brass Tack is for")
+    A("")
+    A("- Marketing, product marketing, and communications teams at technology "
+      "companies who need senior writing without adding headcount.")
+    A("- Ad agencies, design firms, and production companies who need a writer or "
+      "script they can put in front of a client.")
+    A("- Small and medium businesses who want a website whose words were actually "
+      "written by a professional, not filled in around a template.")
+    A("")
+    A("## Distinguishing note")
+    A("")
+    A("Brass Tack Communications (brass-tack.com) of Salt Lake City, Utah, founded "
+      "2011 by %s, is unrelated to similarly named businesses such as Brass Tacks "
+      "Collective, Brass Tacks Marketing & Design, Brass Tack Solutions LLC, and "
+      "Brass Tacks LLC." % C.PERSON["name"])
+    A("")
+    A("## Capabilities")
+    A("")
     for n, d in C.SERVICES["items"]:
-        out.append("- **%s**: %s" % (n, d))
-    out.append("")
-    out.append("## Work")
-    out.append("")
+        A("- **%s**: %s" % (n, d))
+    A("")
+    A("## What you can hire Brass Tack to do")
+    A("")
+    for i in C.PACKAGES["items"]:
+        A("- **%s**: %s (%s)" % (i["name"], i["desc"], i["price"]))
+    A("")
+    A("## %s" % C.WEBSITES["h2"])
+    A("")
+    A(C.WEBSITES["lead"])
+    A("")
+    A("| Tier | What it includes | Price (USD) |")
+    A("| --- | --- | --- |")
+    for i in C.WEBSITES["items"]:
+        A("| %s | %s | %s |" % (i["name"], i["desc"], i["price"]))
+    A("")
+    A("The tiers stack: the build price is in addition to the content price, and "
+      "ongoing care is in addition to the build. Available to clients in %s."
+      % ", ".join(n for _, n in C.SERVES))
+    A("")
+    A("## Work")
+    A("")
     for c in W.CATEGORIES:
-        out.append("- [%s](%s/work-%s.html): %s" % (plain(c["h1"]), BASE, c["slug"], c["blurb"]))
+        A("- [%s](%s/work-%s.html): %s" % (plain(c["h1"]), BASE, c["slug"], c["blurb"]))
         for it in c["items"]:
-            out.append("  - %s. %s" % (plain(it["title"]), plain(" ".join(it["body"]))))
-    out.append("")
-    out.append("## Clients")
-    out.append("")
-    out.append(", ".join(n for n, _ in C.CLIENTS) + ".")
-    out.append("")
-    out.append("## Pages")
-    out.append("")
+            A("  - %s. %s" % (plain(it["title"]), plain(" ".join(it["body"]))))
+    A("")
+    A("## Clients")
+    A("")
+    A(", ".join(n for n, _ in C.CLIENTS) + ".")
+    A("")
+    A("## Pages")
+    A("")
     for label, href in [("Home", "index.html")] + list(C.NAV):
-        out.append("- [%s](%s/%s)" % (label, BASE, "" if href == "index.html" else href))
-    out.append("")
-    out.append("## Frequently asked questions")
-    out.append("")
+        A("- [%s](%s/%s)" % (label, BASE, "" if href == "index.html" else href))
+    A("")
+    A("## Frequently asked questions")
+    A("")
     for q, a in C.FAQ:
-        out.append("### %s" % q)
-        out.append("")
-        out.append(a)
-        out.append("")
-    open(os.path.join(HERE, "llms.txt"), "w", encoding="utf-8").write("\n".join(out))
+        A("### %s" % q)
+        A("")
+        A(a)
+        A("")
+    open(os.path.join(HERE, "llms.txt"), "w", encoding="utf-8").write("\n".join(o))
     return "llms.txt"
 
 

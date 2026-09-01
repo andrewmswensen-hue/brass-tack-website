@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://www.brass-tack.com/</loc>
     <lastmod>2026-09-01</lastmod>
@@ -17,6 +18,66 @@
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://www.brass-tack.com/assets/work/poster-publicis-sapient.webp</video:thumbnail_loc>
+      <video:title>Publicis Sapient + Adobe overview</video:title>
+      <video:description>How do you tell a customer success story when you can’t name the customer? Here’s one idea.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/473235199</video:player_loc>
+      <video:duration>89</video:duration>
+      <video:publication_date>2020-10-28T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://www.brass-tack.com/assets/work/poster-malwarebytes-teasers.webp</video:thumbnail_loc>
+      <video:title>Malwarebytes 2022 Threat Review teasers</video:title>
+      <video:description>This series of three short social videos highlights key findings from Malwarebytes’ 2022 Threat Review and encourages viewers to download the report.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/720431362</video:player_loc>
+      <video:duration>45</video:duration>
+      <video:publication_date>2022-06-14T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://www.brass-tack.com/assets/work/poster-neumont.webp</video:thumbnail_loc>
+      <video:title>Neumont College of Computer Science promo</video:title>
+      <video:description>Sometimes, it’s better to let people tell their own stories in their own words (with a bit of expert direction). This piece weaves perspectives from Neumont faculty, staff, and students into an authentic story about who they are and the experience they offer.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/236423254</video:player_loc>
+      <video:duration>179</video:duration>
+      <video:publication_date>2017-10-02T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://www.brass-tack.com/assets/work/poster-suse.webp</video:thumbnail_loc>
+      <video:title>SUSE Embedded explainer</video:title>
+      <video:description>Describing complex technical products and concepts with approachable, conversational, jargon-free language is deceptively difficult. It’s also what we do best.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/208531122</video:player_loc>
+      <video:duration>133</video:duration>
+      <video:publication_date>2017-03-15T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://www.brass-tack.com/assets/work/poster-arts-pass.webp</video:thumbnail_loc>
+      <video:title>University of Utah Arts Pass explainer</video:title>
+      <video:description>Ambitious goals and a limited budget gave us the perfect opportunity to get creative and have some fun with this video promoting the University of Utah Arts Pass.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/164493566</video:player_loc>
+      <video:duration>124</video:duration>
+      <video:publication_date>2016-04-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://www.brass-tack.com/assets/work/poster-rio-tinto.webp</video:thumbnail_loc>
+      <video:title>Rio Tinto educational video</video:title>
+      <video:description>Rio Tinto has been using this award-winning video—which describes the process of turning raw copper ore into useful products—in classrooms and at their visitor’s center for more than 8 years.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/164493151</video:player_loc>
+      <video:duration>360</video:duration>
+      <video:publication_date>2016-04-27T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
   </url>
   <url>
     <loc>https://www.brass-tack.com/work-articles.html</loc>
@@ -41,6 +102,16 @@
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://www.brass-tack.com/assets/work/events-symantec.webp</video:thumbnail_loc>
+      <video:title>Symantec RSA theater presentation</video:title>
+      <video:description>This fun, fast-paced in-theater game experience drew huge crowds, delighted the audience, and brought Symantec’s cybersecurity story to life.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/720820700</video:player_loc>
+      <video:duration>42</video:duration>
+      <video:publication_date>2022-06-15T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
   </url>
   <url>
     <loc>https://www.brass-tack.com/work-web.html</loc>
