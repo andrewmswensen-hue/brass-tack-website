@@ -46,16 +46,19 @@ HOME = {
 }
 
 # NEW - the "professional writing in the age of AI" section.
+# No em dashes in new copy, per Andrew. Todd's original copy keeps its own.
 AI_SECTION = {
-    "h2": "Anyone can generate words. Not everyone can tell your story.",
+    "h2": "In the age of AI, quality control matters more than ever.",
     "body": [
         "It has never been easier to produce a large volume of content, or harder to "
         "produce content that is actually worth reading.",
-        "When everything starts to sound the same, the writing that stands out is the "
-        "writing that understands your business, your audience, and the point you are "
-        "actually trying to make. That takes judgment, real experience, and someone who "
-        "asks good questions before writing a single line.",
-        "That is the work we have been doing since 2011, and it is the work we still do.",
+        "Every piece of work that leaves here is written by a human, revised by a human, "
+        "and cross-checked by a human. That is not nostalgia. It is the only dependable "
+        "way to get copy that understands your business, sounds like your brand, and "
+        "holds up in front of an audience that can tell the difference.",
+        "On top of that, we layer in responsible AI search optimization, so your content "
+        "is built to be found, read, and cited correctly by the assistants people now "
+        "search with. Strong writing first, with everything else in service of it.",
     ],
 }
 
@@ -194,9 +197,10 @@ FAQ = [
      "works directly with the person or team actually doing the work."),
     ("Why does professional writing still matter in the age of AI?",
      "It has never been easier to produce a large volume of content, or harder to produce "
-     "content that is actually worth reading. Brass Tack’s work is done by experienced "
-     "content creators who understand your business and your audience, and who make deliberate "
-     "choices about every sentence."),
+     "content that is actually worth reading. Every piece of work Brass Tack delivers is "
+     "written by a human, revised by a human, and cross-checked by a human, with responsible "
+     "AI search optimization layered in so the content is built to be found, read, and cited "
+     "correctly by the assistants people now search with."),
     ("Where is Brass Tack Communications located?",
      "Brass Tack Communications is located at 37 W. 200 S., #352, Salt Lake City, UT 84101. "
      "You can reach the team at todd@brass-tack.com or +1 (801) 318-0191."),

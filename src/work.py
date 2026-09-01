@@ -323,9 +323,11 @@ CATEGORIES = [
             },
             {
                 "title": "Lucidworks Blog Posts",
-                "body": ["Brass Tack helped Lucidworks add a steady stream fresh insights to "
-                         "their website with a series of ghostwritten thought leadership blog "
-                         "posts."],
+                # Original site read "a steady stream fresh insights" (missing "of").
+                # Corrected on Andrew's instruction, 2026-09-01. Otherwise verbatim.
+                "body": ["Brass Tack helped Lucidworks add a steady stream of fresh insights "
+                         "to their website with a series of ghostwritten thought leadership "
+                         "blog posts."],
                 "media": "image", "img": "web-lucidworks.webp",
                 "alt": "Lucidworks blog post ghostwritten by Brass Tack",
                 "links": [

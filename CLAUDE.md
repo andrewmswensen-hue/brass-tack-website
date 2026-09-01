@@ -5,6 +5,18 @@ Salt Lake City). Replaces the old Squarespace site with a fast, self-contained
 static site that keeps 100% of the original copy and is heavily optimized for
 both traditional search and AI assistants.
 
+## Where it lives
+
+- Repo: <https://github.com/andrewmswensen-hue/brass-tack-website> (public)
+- Live preview: <https://andrewmswensen-hue.github.io/brass-tack-website/>
+  (GitHub Pages, `main` branch, root folder)
+
+Push to `main` and Pages redeploys. Always run `python3 build.py` before
+committing, or the `.html` files will be out of sync with `src/`.
+
+Canonical URLs deliberately point at `https://www.brass-tack.com` even on the
+preview, so the preview cannot outrank the real site. Leave them that way.
+
 ## Non-negotiable rule
 
 **All copy from the original site is preserved word for word**, including its
@@ -77,8 +89,12 @@ all `*.html`, `sitemap.xml`, `robots.txt`, `llms.txt`, `assets/img/favicon.svg`.
 
 ## Known quirks (all deliberate)
 
-- `"a steady stream fresh insights"` on the Web page is missing an "of". It is a
-  typo in the original site and was kept verbatim. Easy one-word fix if Todd wants it.
+- `"a steady stream of fresh insights"` on the Web page: the original site was
+  missing the word "of". Corrected 2026-09-01 on Andrew's instruction. This is the
+  only edit to Todd's original wording anywhere on the site; the change is
+  commented in `src/work.py`.
+- Em dash policy: Todd's original copy keeps every em dash it had (8 of them).
+  New copy written for the rebuild adds none. Keep it that way.
 - `"NetDocuments solution  brochure"` and `"the range of content  services"` both
   contain a double space in the original. Kept.
 - The old Squarespace site had two leftover template pages (`/home-1` and
