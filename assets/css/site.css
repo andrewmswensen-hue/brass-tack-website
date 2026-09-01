@@ -593,7 +593,7 @@ address{font-style:normal}
 /* not a pill: plain brass uppercase set beside the heading */
 .new-mark{
   font-size:.4em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--brass-deep);margin-left:.55em;vertical-align:middle;
+  color:var(--brass-deep);margin-right:.7em;vertical-align:middle;
   position:relative;top:-.18em;white-space:nowrap;
 }
 /* a real dollar figure gets more weight than "available upon request" */

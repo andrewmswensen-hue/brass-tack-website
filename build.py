@@ -671,7 +671,7 @@ def build_services():
 <section class="section-tight band-alt" aria-labelledby="site-h">
   <div class="wrap-wide">
     <div class="sec-head sec-head-col">
-      <h2 id="site-h">%s <span class="new-mark">New</span></h2>
+      <h2 id="site-h"><span class="new-mark">New</span>%s</h2>
       <p class="lead">%s</p>
     </div>
     <div class="offer-grid">
