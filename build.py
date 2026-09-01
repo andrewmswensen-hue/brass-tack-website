@@ -351,6 +351,23 @@ def media_block(item):
         </figure>""" % (item["img"], esc(item["alt"]))
 
 
+def price_spec(label):
+    """Real dollar figures become machine-readable prices; everything else
+    stays a described quote."""
+    m = re.match(r"^\$([\d,]+)(/month)?$", label.strip())
+    if not m:
+        return {"@type": "PriceSpecification", "priceCurrency": "USD",
+                "description": label}
+    amount = m.group(1).replace(",", "")
+    if m.group(2):
+        return {"@type": "UnitPriceSpecification", "priceCurrency": "USD",
+                "price": amount, "description": label,
+                "referenceQuantity": {"@type": "QuantitativeValue", "value": 1,
+                                      "unitCode": "MON"}}
+    return {"@type": "PriceSpecification", "priceCurrency": "USD",
+            "price": amount, "description": label}
+
+
 def cap_grid(items):
     """The six verbatim services: title up front, full copy behind a disclosure."""
     out = []
@@ -384,14 +401,15 @@ def pkg_grid(items):
                     % (it["work"], ARROW))
         body_open = '        <div class="pkg-body">\n' if it.get("work") else ""
         body_close = "        </div>\n" if it.get("work") else ""
+        soft = "" if it["price"].lstrip().startswith("$") else " pkg-price-soft"
         out.append("""      <article class="%s reveal">
 %s%s        <h3>%s</h3>
         <p>%s</p>
         <div class="pkg-foot">
-          <p class="pkg-price">%s</p>%s
+          <p class="pkg-price%s">%s</p>%s
         </div>
 %s      </article>""" % (cls, media, body_open, esc(it["name"]), esc(it["desc"]),
-                         esc(it["price"]), link, body_close))
+                         soft, esc(it["price"]), link, body_close))
     return "\n".join(out)
 
 
@@ -653,7 +671,7 @@ def build_services():
 <section class="section-tight band-alt" aria-labelledby="site-h">
   <div class="wrap-wide">
     <div class="sec-head sec-head-col">
-      <h2 id="site-h">%s</h2>
+      <h2 id="site-h">%s <span class="new-mark">New</span></h2>
       <p class="lead">%s</p>
     </div>
     <div class="offer-grid">
@@ -687,9 +705,7 @@ def build_services():
                                             "description": d,
                                             "provider": {"@id": BASE + "/#organization"}},
                             "availability": "https://schema.org/InStock",
-                            "priceSpecification": {"@type": "PriceSpecification",
-                                                   "priceCurrency": "USD",
-                                                   "description": pr}}
+                            "priceSpecification": price_spec(pr)}
                            for n, d, pr in [(i["name"], i["desc"], i["price"])
                                             for i in C.PACKAGES["items"] + C.WEBSITES["items"]]]}}
 

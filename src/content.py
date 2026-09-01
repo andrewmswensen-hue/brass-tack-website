@@ -187,20 +187,21 @@ PACKAGES = {
 # NEW - the website offering, featured separately because it is new.
 WEBSITES = {
     "h2": "Websites, designed and built",
-    "lead": "Sites built with AI in the loop and structured so both search engines and AI "
-            "assistants can read, understand, and cite them correctly. Then reviewed and "
-            "revised line by line by a human, because that is the part that decides whether "
-            "any of it is worth reading. This site was built exactly that way.",
+    "new": True,          # renders the small brass "New" marker beside the heading
+    "lead": "A new offering. Sites built with AI in the loop and structured so both search "
+            "engines and AI assistants can read, understand, and cite them correctly. Then "
+            "reviewed and revised line by line by a human, because that is the part that "
+            "decides whether any of it is worth reading. This site was built exactly that way.",
     "items": [
         {"name": "Design only",
          "desc": "A complete top-to-bottom design for your site: structure, page-by-page "
                  "layout, and the words that go in them. Hand it to whoever builds it.",
-         "price": "Pricing available upon request"},
+         "price": "$3,000"},
         {"name": "Build and handoff",
          "desc": "We design it, build it, and hand you the finished site along with "
                  "everything it runs on. It is yours to host, own, and change whenever "
                  "you like.",
-         "price": "One-time project fee, quote available upon request"},
+         "price": "$250/month"},
         {"name": "Build and ongoing care",
          "desc": "Everything in the handoff option, plus we keep it running: updates, new "
                  "pages, fixes, and continued search and AI optimization as things change.",
