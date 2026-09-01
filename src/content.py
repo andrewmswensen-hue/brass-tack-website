@@ -37,8 +37,8 @@ NAV = [
 # --------------------------------------------------------------------------
 HOME = {
     "h1": "Putting words, ideas, and stories to work for your business",
-    # the word given the brass underline in the H1
-    "h1_mark": "work",
+    # the phrase given the brass underline in the H1
+    "h1_mark": "your business",
     "lead": "Brass Tack Communications has been creating crisp, creative, and effective "
             "messaging and copy for production companies, ad agencies, graphic design firms, "
             "and corporations for more than 20 years. We’re ready to do the same for you.",
