@@ -1003,7 +1003,7 @@ def build_llms():
     A("")
     A("Brass Tack Communications is a small, senior content and messaging shop. It "
       "has been creating messaging and copy for production companies, ad agencies, "
-      "graphic design firms, and corporations for more than 20 years, and has "
+      "graphic design firms, and corporations for more than 25 years, and has "
       "operated under the Brass Tack name since %s. Every writer is an experienced "
       "content creator; there are no junior writers, and clients work directly with "
       "the person doing the work." % S["founded"])

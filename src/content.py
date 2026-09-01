@@ -52,7 +52,7 @@ PERSON = {
     "job_title": "Founder and Principal Writer",
     "desc": "Todd Swensen founded Brass Tack Communications in 2011 and has been "
             "writing messaging, copy, and scripts for technology companies, ad "
-            "agencies, and production companies for more than 20 years.",
+            "agencies, and production companies for more than 25 years.",
 }
 
 # Per-page <title> and meta description.
@@ -115,9 +115,11 @@ HOME = {
     "h1": "Putting words, ideas, and stories to work for your business",
     # the phrase given the brass underline in the H1
     "h1_mark": "your business",
+    # "20 years" updated to "25" on Andrew's instruction, 2026-09-01. Second of
+    # two approved edits to Todd's original wording (see also the Web page typo).
     "lead": "Brass Tack Communications has been creating crisp, creative, and effective "
             "messaging and copy for production companies, ad agencies, graphic design firms, "
-            "and corporations for more than 20 years. We’re ready to do the same for you.",
+            "and corporations for more than 25 years. We’re ready to do the same for you.",
     "clients_h2": "Clients",
 }
 
@@ -384,7 +386,7 @@ FAQ = [
      "Yes. The work is done remotely, and Brass Tack takes on clients across the United States, "
      "Canada, the United Kingdom, Australia, New Zealand, and Ireland."),
     ("How long has Brass Tack Communications been in business?",
-     "Brass Tack Communications has been creating messaging and copy for more than 20 years, "
+     "Brass Tack Communications has been creating messaging and copy for more than 25 years, "
      "and has worked with dozens of companies and creative agencies under the Brass Tack name "
      "since 2011."),
     ("Why does professional writing still matter in the age of AI?",

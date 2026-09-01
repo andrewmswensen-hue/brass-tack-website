@@ -129,10 +129,13 @@ rather than being padded out, which would have shifted their underline.
 
 ## Known quirks (all deliberate)
 
-- `"a steady stream of fresh insights"` on the Web page: the original site was
-  missing the word "of". Corrected 2026-09-01 on Andrew's instruction. This is the
-  only edit to Todd's original wording anywhere on the site; the change is
-  commented in `src/work.py`.
+- Two edits to Todd's original wording, both on Andrew's instruction and both
+  commented at the source:
+  1. `"a steady stream of fresh insights"` on the Web page: the original was
+     missing the word "of" (`src/work.py`, 2026-09-01).
+  2. `"more than 25 years"` on the home page: the original said 20
+     (`src/content.py`, 2026-09-01).
+  Everything else marked VERBATIM is still word for word.
 - Em dash policy: Todd's original copy keeps every em dash it had (8 of them).
   New copy written for the rebuild adds none. Keep it that way.
 - `"NetDocuments solution  brochure"` and `"the range of content  services"` both

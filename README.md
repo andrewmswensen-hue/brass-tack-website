@@ -138,11 +138,12 @@ data, so AI assistants can answer pricing questions correctly.
 
 ## Things worth mentioning to Todd
 
-- The Web page used to read *"a steady stream fresh insights"* — the original was
-  missing the word "of". That one word is now fixed. It is the only change made to
-  his original wording anywhere on the site.
+- Two changes have been made to Todd's original wording, both at your direction:
+  the Web page used to read *"a steady stream fresh insights"* (the original was
+  missing the word "of"), and the homepage now says *"more than 25 years"* where
+  the original said 20. Everything else is still word for word.
 - The FAQ reconciles two statements that appear separately on the old site:
-  writing "for more than 20 years," operating under the Brass Tack name "since
+  writing "for more than 25 years," operating under the Brass Tack name "since
   2011." Worth a quick confirmation from him.
 - The old Squarespace site still had two unused template pages sitting in its
   sitemap (`/home-1` and `/take-action`) full of placeholder text about a climate
