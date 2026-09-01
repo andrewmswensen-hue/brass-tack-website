@@ -193,20 +193,23 @@ WEBSITES = {
             "reviewed and revised line by line by a human, because that is the part that "
             "decides whether any of it is worth reading. This site was built exactly that way.",
     "items": [
-        {"name": "Design only",
-         "desc": "A complete top-to-bottom design for your site: structure, page-by-page "
-                 "layout, and the words that go in them. Hand it to whoever builds it.",
+        {"name": "Content only",
+         # reworded from "a complete top-to-bottom design" so it does not
+         # contradict the tier name; substance unchanged
+         "desc": "Everything that goes on the site: structure, what belongs on each page, "
+                 "and the words themselves. Hand it to whoever builds it.",
          "price": "$3,000"},
+        # the + prefixes read as additive: each tier builds on the one before it
         {"name": "Build and handoff",
          "desc": "We design it, build it, and hand you the finished site along with "
                  "everything it runs on. It is yours to host, own, and change whenever "
                  "you like.",
-         "price": "$5,000"},
+         "price": "+$5,000"},
         {"name": "Ongoing care and content",
          "desc": "Everything in the handoff option, plus we keep it running: updates, new "
                  "pages, fresh content, fixes, and continued search and AI optimization as "
                  "things change.",
-         "price": "$250/month"},
+         "price": "+$250/month"},
     ],
 }
 

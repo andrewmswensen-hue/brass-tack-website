@@ -354,7 +354,7 @@ def media_block(item):
 def price_spec(label):
     """Real dollar figures become machine-readable prices; everything else
     stays a described quote."""
-    m = re.match(r"^\$([\d,]+)(/month)?$", label.strip())
+    m = re.match(r"^\+?\$([\d,]+)(/month)?$", label.strip())
     if not m:
         return {"@type": "PriceSpecification", "priceCurrency": "USD",
                 "description": label}
@@ -401,7 +401,7 @@ def pkg_grid(items):
                     % (it["work"], ARROW))
         body_open = '        <div class="pkg-body">\n' if it.get("work") else ""
         body_close = "        </div>\n" if it.get("work") else ""
-        soft = "" if it["price"].lstrip().startswith("$") else " pkg-price-soft"
+        soft = "" if re.match(r"^\+?\$", it["price"].lstrip()) else " pkg-price-soft"
         out.append("""      <article class="%s reveal">
 %s%s        <h3>%s</h3>
         <p>%s</p>
