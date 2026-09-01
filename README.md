@@ -109,6 +109,20 @@ voice stays his, without spreading a habit into sentences he didn't write.
 
 ---
 
+## Pricing placeholders — needs Todd's numbers
+
+The Services page now has two sections under the six main services:
+
+- **"What you can hire us for"** — six concrete deliverables that line up with the
+  portfolio (video scripts, articles/white papers/e-books, collateral, web copy,
+  event content, advertising).
+- **"Websites, designed and built"** — the new offering, in three tiers: design
+  only, build and handoff, and build with ongoing monthly care.
+
+**Every price line is a placeholder** reading some version of "Pricing available
+upon request." They live in `PACKAGES` and `WEBSITES` in `src/content.py`. Swap in
+real numbers or ranges whenever Todd is ready, rerun `python3 build.py`, and push.
+
 ## Things worth mentioning to Todd
 
 - The Web page used to read *"a steady stream fresh insights"* — the original was

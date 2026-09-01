@@ -43,6 +43,9 @@ ARROW = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
 DIAG = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
         'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         '<path d="M7 17 17 7M8 7h9v9"/></svg>')
+BACK = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        '<path d="M19 12H5M11 18l-6-6 6-6"/></svg>')
 PLAY = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
         '<path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14Z"/></svg>')
 
@@ -342,6 +345,15 @@ def media_block(item):
         </figure>""" % (item["img"], esc(item["alt"]))
 
 
+def pkg_grid(items):
+    return "\n".join(
+        """      <div class="pkg-card reveal">
+        <h3>%s</h3>
+        <p>%s</p>
+        <p class="pkg-price">%s</p>
+      </div>""" % (esc(n), esc(d), esc(pr)) for n, d, pr in items)
+
+
 def links_block(item):
     out = []
     for label, href, external in item.get("links", []):
@@ -366,12 +378,14 @@ def build_home():
     ai = "\n        ".join("<p>%s</p>" % esc(p) for p in C.AI_SECTION["body"])
 
     body = """<section class="hero">
-  <div class="wrap-wide hero-inner">
+  <div class="wrap-wide">
     <h1>%(h1)s</h1>
-    <p class="lead">%(lead)s</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="work.html">See the work %(arrow)s</a>
-      <a class="btn btn-ghost" href="services.html">What we do</a>
+    <div class="hero-foot">
+      <p class="lead">%(lead)s</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="work.html">See the work %(arrow)s</a>
+        <a class="btn btn-ghost" href="services.html">What we do</a>
+      </div>
     </div>
   </div>
 </section>
@@ -507,7 +521,9 @@ def build_category(idx, cat):
         if nxt_c:
             parts.append('<a class="next" href="work-%s.html"><span class="dir">Next</span>'
                          '<span class="ttl">%s</span></a>' % (nxt_c["slug"], nxt_c["h1"]))
-        pager = '\n    <nav class="pager" aria-label="More work">%s</nav>' % "".join(parts)
+        pager = ('\n    <nav class="pager" aria-label="More work">%s</nav>'
+                 '\n    <p class="pager-all"><a class="tlink" href="work.html">%s Back to all work</a></p>'
+                 % ("".join(parts), BACK))
 
     body = """<section class="page-head">
   <div class="wrap-wide">
@@ -582,8 +598,35 @@ def build_services():
   </div>
 </section>
 
+<section class="section-tight" aria-labelledby="pkg-h">
+  <div class="wrap-wide">
+    <div class="sec-head sec-head-col">
+      <h2 id="pkg-h">%s</h2>
+      <p class="lead">%s</p>
+    </div>
+    <div class="pkg-grid">
+%s
+    </div>
+  </div>
+</section>
+
+<section class="section-tight band-alt" aria-labelledby="site-h">
+  <div class="wrap-wide">
+    <div class="sec-head sec-head-col">
+      <h2 id="site-h">%s</h2>
+      <p class="lead">%s</p>
+    </div>
+    <div class="pkg-grid">
+%s
+    </div>
+  </div>
+</section>
+
 %s""" % (mark(esc(C.SERVICES["h1"]), "when you need it"), esc(C.SERVICES["lead"]),
-         esc(C.SERVICES["cta"]), ARROW, items, cta_band())
+         esc(C.SERVICES["cta"]), ARROW, items,
+         esc(C.PACKAGES["h2"]), esc(C.PACKAGES["lead"]), pkg_grid(C.PACKAGES["items"]),
+         esc(C.WEBSITES["h2"]), esc(C.WEBSITES["lead"]), pkg_grid(C.WEBSITES["items"]),
+         cta_band())
 
     svc = {"@context": "https://schema.org", "@type": "WebPage",
            "name": "Services | Brass Tack Communications",
@@ -594,7 +637,18 @@ def build_services():
                {"@type": "ListItem", "position": i + 1,
                 "item": {"@type": "Service", "name": n, "description": d,
                          "provider": {"@id": BASE + "/#organization"}}}
-               for i, (n, d) in enumerate(C.SERVICES["items"])]}}
+               for i, (n, d) in enumerate(C.SERVICES["items"])]},
+           "hasPart": {"@type": "OfferCatalog", "name": "Packages",
+                       "itemListElement": [
+                           {"@type": "Offer",
+                            "itemOffered": {"@type": "Service", "name": n,
+                                            "description": d,
+                                            "provider": {"@id": BASE + "/#organization"}},
+                            "availability": "https://schema.org/InStock",
+                            "priceSpecification": {"@type": "PriceSpecification",
+                                                   "priceCurrency": "USD",
+                                                   "description": pr}}
+                           for n, d, pr in C.PACKAGES["items"] + C.WEBSITES["items"]]}}
 
     return page("services.html", "Services | Brass Tack Communications",
                 plain(C.SERVICES["lead"])[:300], body,

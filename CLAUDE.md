@@ -42,7 +42,7 @@ HTML that will run on any host (or just by double-clicking `index.html`).
 | File / folder | What it is |
 |---|---|
 | `build.py` | The generator: page shell, header/footer, JSON-LD, sitemap, robots, llms.txt |
-| `src/content.py` | Home, About, Services, Contact copy + clients + FAQ |
+| `src/content.py` | Home, About, Services, Contact copy + clients + FAQ + PACKAGES/WEBSITES |
 | `src/work.py` | All 22 portfolio pieces across 6 categories |
 | `assets/css/site.css` | The entire stylesheet (one file, no framework) |
 | `assets/js/site.js` | ~90 lines: mobile menu, scroll reveal, click-to-play video |
@@ -59,6 +59,20 @@ all `*.html`, `sitemap.xml`, `robots.txt`, `llms.txt`, `assets/img/favicon.svg`.
 `index.html`, `work.html`, `work-video.html`, `work-articles.html`,
 `work-collateral.html`, `work-advertising.html`, `work-events.html`,
 `work-web.html`, `services.html`, `about.html`, `contact.html`, `404.html`
+
+## Pricing placeholders
+
+`PACKAGES` (6 deliverables) and `WEBSITES` (3 tiers) in `src/content.py` drive the
+two offering sections on the Services page. Every price string is a placeholder
+("Pricing available upon request") awaiting Todd's real numbers. They also feed an
+`OfferCatalog` in the Services page JSON-LD.
+
+## Mobile
+
+Audited at 390px across all 12 pages: no horizontal overflow anywhere, and every
+tap target clears 44px. Small inline links (`.tlink`) keep their visual size but
+get an invisible expanded hit area via `::before` under `@media (max-width:900px)`
+rather than being padded out, which would have shifted their underline.
 
 ## Design
 

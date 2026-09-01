@@ -128,6 +128,66 @@ SERVICES = {
 }
 
 # --------------------------------------------------------------------------
+# PACKAGES  (NEW - concrete deliverables and pricing placeholders.
+#            Every price line is a placeholder for Todd to replace.)
+# --------------------------------------------------------------------------
+PACKAGES = {
+    "h2": "What you can hire us for",
+    "lead": "Most engagements start as one of these. Every one is scoped to the project, "
+            "so the number depends on length, complexity, and how much of the work is "
+            "yours to hand over.",
+    "items": [
+        ("Video scripts and story direction",
+         "Concept, script, and story direction for brand films, explainers, customer "
+         "stories, and social video. From a thirty-second teaser to a six-minute feature.",
+         "Pricing available upon request"),
+        ("Articles, white papers, and e-books",
+         "Ghostwritten long-form content, from research and subject matter interviews "
+         "through drafting and revisions, published under your byline or your executive’s.",
+         "Priced per piece, quote available upon request"),
+        ("Online and print collateral",
+         "Info sheets, datasheets, brochures, and infographics that make a complicated "
+         "product easy to understand and easy to hand to a customer.",
+         "Pricing available upon request"),
+        ("Web copy and blog programs",
+         "Product and solution pages, site sections, and a steady stream of ghostwritten "
+         "thought leadership on a schedule you can count on.",
+         "Per project or monthly retainer, quote available upon request"),
+        ("Event content management",
+         "General sessions, theater presentations, and virtual conferences, scripted and "
+         "content-managed end to end, with speaker coaching and onsite support.",
+         "Scoped per event, quote available upon request"),
+        ("Advertising campaigns",
+         "Concept and copy for brand-level campaigns that run across print, web, social, "
+         "and video, built on a messaging foundation that holds the whole thing together.",
+         "Pricing available upon request"),
+    ],
+}
+
+# NEW - the website offering, featured separately because it is new.
+WEBSITES = {
+    "h2": "Websites, designed and built",
+    "lead": "Sites built with AI in the loop and structured so both search engines and AI "
+            "assistants can read, understand, and cite them correctly. Then reviewed and "
+            "revised line by line by a human, because that is the part that decides whether "
+            "any of it is worth reading. This site was built exactly that way.",
+    "items": [
+        ("Design only",
+         "A complete top-to-bottom design for your site: structure, page-by-page layout, "
+         "and the words that go in them. Hand it to whoever builds it.",
+         "Pricing available upon request"),
+        ("Build and handoff",
+         "We design it, build it, and hand you the finished site along with everything it "
+         "runs on. It is yours to host, own, and change whenever you like.",
+         "One-time project fee, quote available upon request"),
+        ("Build and ongoing care",
+         "Everything in the handoff option, plus we keep it running: updates, new pages, "
+         "fixes, and continued search and AI optimization as things change.",
+         "Monthly rate available upon request"),
+    ],
+}
+
+# --------------------------------------------------------------------------
 # ABOUT  (VERBATIM)
 # --------------------------------------------------------------------------
 ABOUT = {
