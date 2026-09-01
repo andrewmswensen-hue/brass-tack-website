@@ -571,25 +571,40 @@ address{font-style:normal}
 
 /* -- deliverable card (image + price + link to the real work) -- */
 .pkg-card{
-  display:flex;flex-direction:column;
+  --pkg-pad:clamp(24px,2.6vw,32px);
+  display:flex;flex-direction:column;overflow:hidden;
   background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);
-  padding:clamp(24px,2.6vw,32px);
+  padding:var(--pkg-pad);
   transition:border-color .3s var(--ease),box-shadow .3s var(--ease),transform .3s var(--ease);
 }
 .pkg-card:hover{border-color:transparent;box-shadow:var(--shadow);transform:translateY(-3px)}
 .pkg-card h3{font-size:clamp(1.12rem,1.45vw,1.3rem);margin-bottom:.6em}
 .pkg-card p{color:var(--ink-3);font-size:.97rem;margin:0}
-.pkg-card-media{padding:0;overflow:hidden}
+.pkg-card-media{padding:0}
 .pkg-thumb{display:block;aspect-ratio:16/9;overflow:hidden;background:var(--line-2)}
 .pkg-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
 .pkg-card-media:hover .pkg-thumb img{transform:scale(1.04)}
-.pkg-body{display:flex;flex-direction:column;flex:1;padding:clamp(22px,2.4vw,28px)}
+.pkg-body{
+  --pkg-pad:clamp(22px,2.4vw,28px);
+  display:flex;flex-direction:column;flex:1;padding:var(--pkg-pad);
+}
+/* breathing room between the description and the pricing block */
+.pkg-body>p,.pkg-card>p{margin-bottom:clamp(22px,2.2vw,30px)}
+
+/* Pricing + examples is its own block: full-bleed dark, so it reads as the
+   "what this costs" bar rather than more body copy.
+   Stacked, not space-between: long price lines wrapped inconsistently and
+   left the "See examples" link ragged from card to card. */
 .pkg-foot{
-  /* stacked, not space-between: long price lines wrapped inconsistently and
-     left the "See examples" link ragged from card to card */
-  margin-top:auto;padding-top:16px;border-top:1px solid var(--line-2);
+  margin:auto calc(var(--pkg-pad) * -1) calc(var(--pkg-pad) * -1);
+  padding:clamp(16px,1.6vw,20px) var(--pkg-pad);
+  background:var(--ink);color:#fff;
   display:flex;flex-direction:column;align-items:flex-start;gap:10px;
 }
+.pkg-foot .pkg-price{color:#fff}
+.pkg-foot .pkg-price-soft{color:rgba(255,255,255,.74)}
+.pkg-foot .tlink{color:#fff}
+.pkg-foot .tlink:hover{color:var(--brass)}
 /* not a pill: plain brass uppercase set beside the heading */
 .new-mark{
   font-size:.4em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
@@ -597,10 +612,10 @@ address{font-style:normal}
   position:relative;top:-.18em;white-space:nowrap;
 }
 /* a real dollar figure gets more weight than "available upon request" */
-.pkg-price:not(.pkg-price-soft){font-size:1.05rem;color:var(--ink)}
+.pkg-price:not(.pkg-price-soft){font-size:1.05rem}
 .pkg-price{
   font-family:var(--font-display);font-weight:600;font-size:.85rem;
-  letter-spacing:-.005em;color:var(--brass-deep);margin:0;
+  letter-spacing:-.005em;margin:0;
 }
 .pkg-foot .tlink{font-size:.88rem;white-space:nowrap}
 
@@ -608,6 +623,7 @@ address{font-style:normal}
 .band-alt{background:var(--white);border-block:1px solid var(--line)}
 .band-alt .cap-card:hover{background:var(--paper)}
 .band-alt .pkg-card{background:var(--paper)}
+.band-alt .pkg-foot{background:var(--ink)}
 
 /* consecutive offering sections sit closer together than unrelated ones */
 .section-stack{padding-top:clamp(34px,3.8vw,52px)}
