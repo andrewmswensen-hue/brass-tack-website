@@ -346,23 +346,47 @@ FAQ = [
      "firms, and corporations. Services include content strategy, messaging development, "
      "concept development, copywriting and scriptwriting, event content management, and "
      "onsite event support."),
-    ("How long has Brass Tack Communications been in business?",
-     "Brass Tack Communications has been creating messaging and copy for more than 20 years, "
-     "and has worked with dozens of companies and creative agencies under the Brass Tack name "
-     "since 2011."),
     ("What kinds of content does Brass Tack write?",
      "Everything from short-form ad copy, web content, and video scripts to longer-form blog "
      "articles, e-books, and white papers, plus production scripts and general session content "
      "for live and virtual events."),
-    ("Who does Brass Tack Communications work with?",
-     "Clients have included ServiceNow, Ivanti, Malwarebytes, DigiCert, Commvault, Broadcom, "
-     "Cybersource, Optum Financial, Publicis Sapient, Henry Schein, DFIN, Micro Focus, Red "
-     "Rider, Gantry, and Event Marketing Partners."),
+    ("Who actually writes the content, a human or AI?",
+     "Both, in that order of importance. AI is used where it earns its place, for research, "
+     "early drafts, and structure. Everything is then directed, revised, and cross-checked by "
+     "an experienced human content creator, because judgment is what decides whether any of it "
+     "is worth reading."),
     ("How is Brass Tack different from a larger agency?",
      "Brass Tack is a small, specialized shop that focuses exclusively on content, messaging, "
      "and writing, without the usual layers of business development teams and account managers "
      "standing between you and the work. There are no junior writers, and your team always "
      "works directly with the person or team actually doing the work."),
+    ("How much does a small business website cost?",
+     "Brass Tack prices websites in three stacking tiers. Content only is $3,000 and covers "
+     "site structure, what belongs on each page, and the words themselves. Adding design, "
+     "build, and handoff of the finished site is a further $5,000. Ongoing care and content, "
+     "which keeps the site updated and optimized, is a further $250 a month. Content projects "
+     "other than websites are scoped and quoted per project."),
+    ("What is included in a Brass Tack website build?",
+     "The build tier covers design and development of the finished site along with everything "
+     "it runs on, handed over for you to host, own, and change. It builds on the content tier, "
+     "which covers structure, what belongs on each page, and the copy itself. Sites are "
+     "structured so both search engines and AI assistants can read, understand, and cite them "
+     "correctly, then reviewed and revised line by line by a human."),
+    ("Can Brass Tack write the content for a website someone else builds?",
+     "Yes. That is the content only tier at $3,000: site structure, what belongs on each page, "
+     "and the words themselves, handed to whoever is doing the build."),
+    ("Who does Brass Tack Communications work with?",
+     "Clients have included ServiceNow, Ivanti, Malwarebytes, DigiCert, Commvault, Broadcom, "
+     "Cybersource, Optum Financial, Publicis Sapient, Henry Schein, DFIN, Micro Focus, Red "
+     "Rider, Gantry, and Event Marketing Partners, alongside small and medium businesses that "
+     "need a website whose words were actually written by a professional."),
+    ("Does Brass Tack work with clients outside of Utah?",
+     "Yes. The work is done remotely, and Brass Tack takes on clients across the United States, "
+     "Canada, the United Kingdom, Australia, New Zealand, and Ireland."),
+    ("How long has Brass Tack Communications been in business?",
+     "Brass Tack Communications has been creating messaging and copy for more than 20 years, "
+     "and has worked with dozens of companies and creative agencies under the Brass Tack name "
+     "since 2011."),
     ("Why does professional writing still matter in the age of AI?",
      "It has never been easier to produce a large volume of content, or harder to produce "
      "content worth reading. Brass Tack uses AI where it earns its place, for research, "
@@ -370,6 +394,7 @@ FAQ = [
      "an experienced human. Responsible AI search optimization is built in, so the content "
      "is found, read, and cited correctly by the assistants people now search with."),
     ("Where is Brass Tack Communications located?",
-     "Brass Tack Communications is located at 37 W. 200 S., #352, Salt Lake City, UT 84101. "
-     "You can reach the team at todd@brass-tack.com or +1 (801) 318-0191."),
+     "Brass Tack Communications is located at 37 W. 200 S., #352, Salt Lake City, UT 84101, "
+     "and works remotely with clients well beyond Utah. You can reach the team at "
+     "todd@brass-tack.com or +1 (801) 318-0191."),
 ]
